@@ -1,13 +1,5 @@
 # spiral-test
 
-# Spiral Test
-
-# Breakdown
-
-# The test will be written in Javascript using Vue.js CLI.
-
-# Commits
-
 # 1 - Install Vue dependencies
 
 # 2 - Test Page

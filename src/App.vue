@@ -1,10 +1,12 @@
+/* eslint-disable */
 <template>
   <div id="app">
     <section class="test">
       <h1 class="test__heading">Create a Spiral</h1>
       <p class="test__description">
-        Choose the size of the spiral
+        Choose the initial size of the spiral
       </p>
+      <p>Total number of blocks {{ spiralTotalSize }}</p>
       <label for="spiral" style="display: block;">Spiral Size</label>
       <input
         id="spiral"
@@ -15,20 +17,20 @@
         min="0"
         max="100"
       />
-      <button class="test__button-create" on:click="createSpiral">
-        Create
-      </button>
+
+      <button @click="createMatrix">create</button>
     </section>
     <section class="spiral">
-      <div v-for="n in spiralSize" :key="n">
-        <MyBlock :id="n" />
-      </div>
+      <MyBlock v-for="n in matrix.length" :key="n" :style="blockPosition(n)">
+      </MyBlock>
+      {{ matrix }}
     </section>
   </div>
 </template>
 
 <script>
 import MyBlock from "./components/MyBlock";
+import Vue from "vue";
 export default {
   name: "App",
   components: {
@@ -36,11 +38,64 @@ export default {
   },
   data() {
     return {
-      spiralSize: 0,
+      spiralSize: 10,
+      matrix: [],
     };
   },
   methods: {
-    createSpiral() {},
+    createMatrix() {
+      var turn = 0;
+      var spiralSize = this.spiralSize;
+      var x = 0;
+      var y = 0;
+      var matrix = [];
+      for (let index = 0; index <= spiralSize; index++) {
+        if (index == spiralSize - 1) {
+          index = 0;
+          spiralSize--;
+          if (turn < 4) {
+            turn++;
+          } else {
+            turn = 0;
+          }
+        }
+        if (turn == 0) {
+          matrix.push({ posx: x, posy: y });
+          x++;
+        } else if (turn == 1) {
+          matrix.push({ posx: x, posy: y });
+          y++;
+        } else if (turn == 2) {
+          matrix.push({ posx: x, posy: y });
+          x--;
+        } else if (turn == 3) {
+          matrix.push({ posx: x, posy: y });
+          y--;
+        }
+      }
+      this.matrix = matrix;
+      console.log("1");
+      this.$nextTick(() => {});
+    },
+    blockPosition(n) {
+      console.log("2");
+      Vue.nextTick(() => {
+        return {
+          left: `${this.matrix[n].posx * 40}px`,
+          top: `${this.matrix[n].posy * 40}px`,
+        };
+      });
+    },
+  },
+
+  computed: {
+    spiralTotalSize() {
+      var total = 1;
+      for (let index = this.spiralSize - 1; index >= 0; index--) {
+        total += index;
+      }
+      return total;
+    },
   },
 };
 </script>
@@ -83,5 +138,6 @@ export default {
 .spiral {
   text-align: center;
   margin: 3rem;
+  position: relative;
 }
 </style>
