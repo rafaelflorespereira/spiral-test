@@ -1,24 +1,28 @@
 # spiral-test
 
-## Project setup
-```
-npm install
-```
+# Spiral Test
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# Breakdown
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# The test will be written in Javascript using Vue.js CLI.
 
-### Lints and fixes files
-```
-npm run lint
-```
+# Commits
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 1 - Install Vue dependencies
+
+# 2 - Test Page
+
+    2.1 - Test description
+    2.2 - User input
+    2.3 - User input validation
+    	* Integer validation
+    2.4 - Div Component
+    	* It will be the visual iterator
+    	* CSS
+
+# 3 - Test functionality
+
+    3.1 - Spiral Functionality
+    3.2 - CSS and Visual functionality.
+
+# 4 - ?? Possible tests??
