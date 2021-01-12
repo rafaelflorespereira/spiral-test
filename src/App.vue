@@ -21,16 +21,20 @@
       <button @click="createMatrix">create</button>
     </section>
     <section class="spiral">
-      <MyBlock v-for="n in matrix.length" :key="n" :style="blockPosition(n)">
+      <MyBlock
+        v-for="n in matrix.length"
+        :key="n"
+        :id="n"
+        :position="matrix[n]"
+      >
       </MyBlock>
-      {{ matrix }}
     </section>
   </div>
 </template>
 
 <script>
 import MyBlock from "./components/MyBlock";
-import Vue from "vue";
+
 export default {
   name: "App",
   components: {
@@ -44,6 +48,7 @@ export default {
   },
   methods: {
     createMatrix() {
+      this.matrix = [];
       var turn = 0;
       var spiralSize = this.spiralSize;
       var x = 0;
@@ -74,17 +79,6 @@ export default {
         }
       }
       this.matrix = matrix;
-      console.log("1");
-      this.$nextTick(() => {});
-    },
-    blockPosition(n) {
-      console.log("2");
-      Vue.nextTick(() => {
-        return {
-          left: `${this.matrix[n].posx * 40}px`,
-          top: `${this.matrix[n].posy * 40}px`,
-        };
-      });
     },
   },
 

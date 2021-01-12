@@ -1,9 +1,24 @@
 <template>
-  <div class="test__block"></div>
+  <div
+    class="test__block"
+    :style="{ left: positionX + 'px', top: positionY + 'px' }"
+  >
+    {{ position.posx }} , {{ position.posy }}
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["position"],
+  computed: {
+    positionX() {
+      return this.position.posx * 40;
+    },
+    positionY() {
+      return this.position.posy * 40;
+    },
+  },
+};
 </script>
 
 <style>
@@ -11,7 +26,8 @@ export default {};
   position: absolute;
   content: "";
   display: inline;
-  padding: 0;
+  padding: 0.2rem;
+  text-align: center;
   margin: 0;
   height: 2rem;
   width: 2rem;
